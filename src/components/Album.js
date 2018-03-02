@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import Ionicon from 'react-ionicons';
 
 class Album extends Component {
   constructor(props) {
@@ -9,9 +10,12 @@ class Album extends Component {
     return album.slug === this.props.match.params.slug
   });
 
+  const songs = { album: songs};
+
   this.state = {
     album: album
   };
+
 }
 
   render() {
@@ -31,14 +35,21 @@ class Album extends Component {
               <col id="song-title-column"/>
               <col id="song-duration-column"/>
             </colgroup>
-            <tbody className="songList">
-                {this.state.album.songs.map( (album, index) => {
-                  return (
-                    <tr>{album.songs}</tr>
-                  );
-                }
-              )
-            } 
+            <tbody>
+               {this.state.album.songs.map( (songs, index) => {
+                  return ( 
+                  <tr>
+                    <td className="song-number">{index + 1}</td>
+                    <td className="song-title">{songs.title}</td>
+                    <td className="song-duration">{songs.duration}</td>
+                    <Ionicon icon="ios-play" fontSize="35px" color="black"/>
+                    <Ionicon icon="ios-pause" fontSize="35px" color="black"/>
+                  </tr>
+                  )
+                })
+              }
+
+ 
             </tbody>
           </table>
       </section>
