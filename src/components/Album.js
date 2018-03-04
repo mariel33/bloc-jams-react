@@ -57,6 +57,14 @@ handlePrevClick() {
   this.play(newSong);
 }
 
+handleNextClick() {
+  const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+  const nextIndex = Math.max(0, currentIndex + 1);
+  const nextSong = this.state.album.songs[nextIndex];
+  this.setSong(nextSong);
+  this.play(nextSong);
+}
+
   render() {
     return (
       <section className="album">
@@ -98,6 +106,7 @@ handlePrevClick() {
           currentSong={this.state.currentSong}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
+          handleNextClick={() => this.handleNextClick()}
           />
       </section>
     );
