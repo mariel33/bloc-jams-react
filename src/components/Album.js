@@ -18,11 +18,13 @@ class Album extends Component {
     currentSong: album.songs[0],
     currentTime: 0,
     duration: album.songs[0].duration,
-    isPlaying: false
+    isPlaying: false,
+    volume: 1
   };
 
   this.audioElement = document.createElement('audio');
   this.audioElement.src=album.songs[0].audioSrc;
+  this.audioElement.volume=this.state.volume;
 
 }
 
@@ -37,6 +39,7 @@ componentDidMount() {
   };
   this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
   this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+
 }
 
 componentWillUnmount() {
@@ -92,6 +95,24 @@ handleTimeChange(e) {
   this.setState({ currentTime: newTime });
 }
 
+formatTime(seconds) {
+  if (isNaN(seconds)) {
+    return "-:--";
+  }
+  const wholeTime = Math.floor(seconds);
+  const minutes= Math.floor(wholeTime / 60);
+  const remainingTime = wholeTime % 60;
+  let output = minutes + ":" + remainingTime;
+  return output;
+
+}
+
+handleVolumeChange(e) {
+  const newVolume = e.target.value;
+  this.audioElement.volume = newVolume;
+  this.setState({ volume: newVolume })
+}
+
   render() {
     return (
       <section className="album">
@@ -113,12 +134,12 @@ handleTimeChange(e) {
                {this.state.album.songs.map( (songs, index) => {
                   return ( 
                   <tr className="song" key={index} onClick={() => this.handleSongClick(songs)}>
-                    <td className="song-number">{index + 1}</td>
+                    <td className="song-number">{index + 1 + '.'}</td>
                     <td className="song-title">{songs.title}</td>
-                    <td className="song-duration">{songs.duration}</td>
+                    <td className="song-duration">{this.formatTime(songs.duration)}</td>
                     <td className="song-actions">
-                    <Ionicon icon="ios-play" fontSize="35px" color="black"/>
-                    <Ionicon icon="ios-pause" fontSize="35px" color="black"/>
+                    <Ionicon icon="ios-play" fontSize="25px" color="black"/>
+                    <Ionicon icon="ios-pause" fontSize="25px" color="black"/>
                     </td>
                   </tr>
                   )
@@ -133,10 +154,13 @@ handleTimeChange(e) {
           currentSong={this.state.currentSong}
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
+          volume={this.state.volume}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          formatTime={(e) => this.formatTime(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
           />
       </section>
     );
