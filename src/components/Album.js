@@ -11,8 +11,6 @@ class Album extends Component {
     return album.slug === this.props.match.params.slug
   });
 
-  const songs = { album: songs};
-
   this.state = {
     album: album,
     currentSong: album.songs[0],
@@ -102,7 +100,7 @@ formatTime(seconds) {
   const wholeTime = Math.floor(seconds);
   const minutes= Math.floor(wholeTime / 60);
   const remainingTime = wholeTime % 60;
-  let output = minutes + ":" + remainingTime;
+  let output = minutes + ":" + (remainingTime < 10 ? "0" + remainingTime: remainingTime);
   return output;
 
 }
@@ -117,7 +115,7 @@ handleVolumeChange(e) {
     return (
       <section className="album">
         <section id="album-info">
-          <img id="album-cover-art" src={this.state.album.albumCover} />
+          <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title} />
           <div className="album-details">
             <h1 id="album-title">{this.state.album.title}</h1>
             <h2 className="artist">{this.state.album.artist}</h2>
