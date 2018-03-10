@@ -10,11 +10,13 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <nav>
-            <Link to ="/">Landing</Link>
-            <Link to= "/library">Library</Link>
+          <nav id="navbar">
+            <ul>
+              <li className= "topleft" style={{color: 'white'}}>Bloc Jams</li>
+              <li><Link style={{color: 'white'}} to ="/">Home</Link></li>
+              <li><Link style={{color: 'white'}} to= "/library">Library</Link></li>
+            </ul>
           </nav>
-          <h1>Bloc Jams</h1>
         </header>
         <main>
           <Route exact path="/" component={Landing}/>
@@ -22,8 +24,8 @@ class App extends Component {
           <Route path="/album/:slug" component={Album}/>
         </main>
       </div>
-    );
-  }
-}
+        );
+      }
+    }
 
 export default App;

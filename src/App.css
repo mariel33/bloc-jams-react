@@ -1,28 +1,201 @@
+/*style navbar*/
+nav {
+  background-color: #333;
+  opacity: 0.65;
+  top: 0;
+  width: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+  padding: 25px;
+}
+
+nav li:hover{
+  background-color: #111;
+}
+
+.topleft{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.hero-title, .point1, .point2, .point3 {
+  min-height: 100%;
+  position: relative;
+  opacity: 0.75;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:200px;
+  
+}
+
+.hero-title {
+  background-image: url("http://i64.tinypic.com/4gi805.jpg");
+}
+
+.point1{
+  background-image: 
+  linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url("http://i66.tinypic.com/fbfgcn.jpg");
+}
+
+.point2{
+  background-image: 
+  linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url("http://i64.tinypic.com/9zouvp.jpg");
+}
+
+.point3{
+  background-image: 
+  linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url("http://i65.tinypic.com/ab5ap4.jpg");
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.landing {
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.text-blocks{
+  background-color:black;
+  color:white;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
-.App-title {
-  font-size: 1.5em;
+@media only screen and (max-width: 1024px) {
+  .text-blocks {
+    margin: auto;
+    padding: auto;
+    width: 100%;    
+    }
 }
 
-.App-intro {
-  font-size: large;
+
+
+
+
+.point-title{
+  text-transform: uppercase;
+  font: 25px 'Lato', sans-serif;
+  letter-spacing: 10px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.point-description{
+  font-style: italic;
+  font-size: 14px;
+}
+
+.hero-title p{
+  font-style: italic;
+  font-size: 20px;
+}
+
+.hero-title h2{
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing:10px;
+  font: 40px 'Lato', sans-serif;
+}
+
+/*style album page & player-bar*/
+.album {
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+  font-family: sans-serif;
+}
+
+#song-list{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#album-cover-art{
+  float: center;
+  height: 50%;
+  width: 50%;
+  padding-left: 50px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  padding-right: 25px;
+}
+
+.album-details{
+  padding-top:25px;
+}
+
+.player-bar{
+  padding-bottom: 25px;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.artist{
+  font:35px 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-weight: bold;
+}
+
+#release-info{
+  font-style: italic;
+}
+
+.song-title{
+  font-weight: bold;
+}
+
+/*style library*/
+.library{
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+}
+
+.library-img{
+  height: 30%;
+  width: 30%;
+  padding: 25px;
+  padding-top: 50px;
+  margin-top: auto;
+}
+
+.library-title, .library-artist, .songs-length{
+  color: black;
+  font-family: 'Lato', sans-serif;
+  padding-bottom: 25px;
+}
+
+.library-artist{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.songs-length{
+  font-style: italic;
 }

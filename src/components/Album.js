@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import albumData from './../data/albums';
 import Ionicon from 'react-ionicons';
 import PlayerBar from './PlayerBar';
+import './../App.css';
+
+
 
 class Album extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class Album extends Component {
     currentTime: 0,
     duration: album.songs[0].duration,
     isPlaying: false,
+    isHovered: false,
     volume: 1
   };
 
@@ -129,22 +133,28 @@ handleVolumeChange(e) {
               <col id="song-duration-column"/>
             </colgroup>
             <tbody>
-               {this.state.album.songs.map( (songs, index) => {
+               {this.state.album.songs.map( (song, index) => {
                   return ( 
-                  <tr className="song" key={index} onClick={() => this.handleSongClick(songs)}>
-                    <td className="song-number">{index + 1 + '.'}</td>
-                    <td className="song-title">{songs.title}</td>
-                    <td className="song-duration">{this.formatTime(songs.duration)}</td>
+                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)}
+                    onMouseEnter={() => this.setState({isHovered: index +1})}
+                    onMouseLeave={()=> this.setState({isHovered: false})}
+                    >
                     <td className="song-actions">
-                    <Ionicon icon="ios-play" fontSize="25px" color="black"/>
-                    <Ionicon icon="ios-pause" fontSize="25px" color="black"/>
+                        {(this.state.isPlaying) ?
+                        <span> {(this.state.currentSong.title === song.title) ?
+                        <Ionicon icon= "ios-pause"/> :<span>{index + 1 + "."}</span> }</span>
+                        : 
+                        (this.state.isHovered === index+1) ? 
+                        <span><Ionicon icon= "ios-play"/></span>
+                        : <span className= "song-number">{index + 1 + "."}</span>
+                         }
                     </td>
+                    <td className="song-title">{song.title}</td>
+                    <td className="song-duration">{this.formatTime(song.duration)}</td>
                   </tr>
                   )
                 })
               }
-
- 
             </tbody>
           </table>
           <PlayerBar 
